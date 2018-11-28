@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"context"
 	"go-client/models"
-	"golang.org/x/sys/windows/registry"
 )
 
 
@@ -20,7 +19,7 @@ import (
 func Init() {
 	url := "https://api.xooa.com/api/v1"
 
-	//TODO Before Running fill your token here
+	//TODO fill your token here
 	token := "<YOUR_TOKEN_HERE>"
 	// Set log level to info
 	// [TraceLevel:"trace",DebugLevel:"debug",InfoLevel:"info",WarnLevel:"warning",ErrorLevel:"error",FatalLevel: "fatal" PanicLevel:"panic"]

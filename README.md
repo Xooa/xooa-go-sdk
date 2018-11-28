@@ -1,6 +1,6 @@
 # xooa_client
 --
-    import "go-client"
+    import "github.com/Xooa/xooa-go-sdk"
 
 
 ## Usage
@@ -353,4 +353,4 @@ To capture the specific events specified in the call
 ```go
 func (x *XooaClient) UnSubscribe()
 ```
-UnSubscribing all the eventa
+UnSubscribing all the event
