@@ -1,0 +1,172 @@
+package test
+
+import (
+	"go-client/lib"
+	"fmt"
+	"context"
+	"testing"
+	"github.com/stretchr/testify/assert"
+	"time"
+	"github.com/fatih/color"
+	"runtime"
+	"go-client"
+)
+// MyCaller returns the caller of the function that called it :)
+func MyCaller() string {
+
+	// we get the callers as uintptrs - but we just need 1
+	fpcs := make([]uintptr, 1)
+
+	// skip 3 levels to get to the caller of whoever called Caller()
+	n := runtime.Callers(3, fpcs)
+	if n == 0 {
+		return "n/a" // proper error her would be better
+	}
+
+	// get the info of the actual function that's in the pointer
+	fun := runtime.FuncForPC(fpcs[0]-1)
+	if fun == nil {
+		return "n/a"
+	}
+
+	// return its name
+	return fun.Name()
+}
+
+func PassFailPrint(t testing.T){
+
+	if t.Failed() != true {
+		color.Green(MyCaller() + " ✓ Pass")
+	} else {
+		color.Red(MyCaller() + " X Fail")
+	}
+}
+
+func Init() {
+	url := "https://api.staging.xooa.io/api/v1"
+	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcGlLZXkiOiJaODlZMEVQLUZRMjQzS0ctSkJNWjJNWi1RRjJHMlNGIiwiQXBpU2VjcmV0IjoiS2tOb2QybUJZMWc0eXl4IiwiUGFzc3BocmFzZSI6ImI5ZTgyNTBjZmQwODA2NTVmOTQ4MzNmMGYyN2VjZDllIiwiaWF0IjoxNTQxMDU1OTY4fQ.2RnWJ-93Gvo3cbkM37u-t_ZFVn6NyCLbxTctO3Zu5ZI"
+	logLevel := "info"
+	xooa_client.SetUrl(url)
+	xooa_client.SetToken(token)
+	xooa_client.SetLogLevel(logLevel)
+
+}
+
+func TestGetBlockByNumber(t *testing.T) {
+	Init()
+	assert := assert.New(t)
+
+	cfg, err := xooa.NewConfiguration()
+	if err != nil {
+		fmt.Println(err);
+		t.Fail()
+	}
+	x := xooa_client.NewXooaClient(cfg)
+
+	blockData, pendingRes, errB := x.GetBlockByNumber(context.TODO(), "1", map[string]interface{}{})
+	assert.NotEqual(blockData.BlockNumber, 0, "Block Number Cannot be 0")
+	assert.NotEqual(blockData.DataHash, "", "Data Hash Cannot be Empty")
+	assert.NotEqual(blockData.PreviousHash, "", " Previous Hash Cannot be Empty")
+	assert.NotEqual(blockData.NumberOfTransactions, 0, " NumberOfTransactions must be a positive Number")
+	assert.Equal(pendingRes.ResultId, "", "Response Cannot be pending")
+	assert.Equal(pendingRes.ResultURL, "", "Response Cannot be pending")
+	if errB != nil {
+
+	}
+	PassFailPrint(*t)
+
+}
+
+func TestGetBlockByNumberAsync(t *testing.T) {
+	Init()
+	assert := assert.New(t)
+
+	cfg, err := xooa.NewConfiguration()
+	if err != nil {
+		fmt.Println(err);
+		t.Fail()
+	}
+	x := xooa_client.NewXooaClient(cfg)
+
+	blockData, pendingRes, error := x.GetBlockByNumberAsync(context.TODO(), "1", map[string]interface{}{})
+	assert.Equal(blockData.BlockNumber, 0, "Must Empty")
+	assert.Equal(blockData.DataHash, "", "Must Empty")
+	assert.Equal(blockData.PreviousHash, "", " Must Empty")
+	assert.NotEqual(pendingRes.ResultId, "", "Result Id Must be a String ")
+	assert.NotEqual(pendingRes.ResultURL, "", "Result URL Must be a String ")
+	if error != nil {
+		t.Fail()
+	}
+	if pendingRes.ResultId != "" {
+		time.Sleep(4 * time.Second)
+		block, error := x.GetResultForBlockByNumber(context.TODO(), pendingRes.ResultId)
+		if error != nil {
+			t.Fail()
+		}
+		assert.NotEqual(block.BlockNumber, 0, "Block Number Cannot be 0")
+		assert.NotEqual(block.DataHash, "", "Data Hash Cannot be Empty")
+		assert.NotEqual(block.PreviousHash, "", " Previous Hash Cannot be Empty")
+		assert.NotEqual(block.NumberOfTransactions, 0, " NumberOfTransactions must be a positive Number")
+
+	}
+	PassFailPrint(*t)
+
+
+}
+
+func TestGetCurrentBlock(t *testing.T) {
+	assert := assert.New(t)
+
+	cfg, err := xooa.NewConfiguration()
+	if err != nil {
+		fmt.Println(err);
+		t.Fail()
+	}
+	x := xooa_client.NewXooaClient(cfg)
+
+	blockData, pendingRes, error := x.GetCurrentBlock(context.TODO(), map[string]interface{}{})
+	assert.NotEqual(blockData.CurrentBlockHash, "", "Current Block Hash Cannot be Empty")
+	assert.NotEqual(blockData.PreviousBlockHash, "", "Previous Block Hash Cannot be Empty")
+	assert.NotEqual(blockData.BlockNumber, 0, " Block Number Cannot be 0")
+	assert.Equal(pendingRes.ResultId, "", "Response Cannot be pending")
+	assert.Equal(pendingRes.ResultURL, "", "Response Cannot be pending")
+	if error != nil {
+		t.Fail()
+	}
+	PassFailPrint(*t)
+
+}
+
+func TestGetCurrentBlockAsync(t *testing.T) {
+	assert := assert.New(t)
+
+	cfg, err := xooa.NewConfiguration()
+	if err != nil {
+		fmt.Println(err);
+		t.Fail()
+	}
+	x := xooa_client.NewXooaClient(cfg)
+
+	blockData, pendingRes, error := x.GetCurrentBlockAsync(context.TODO(), map[string]interface{}{})
+	assert.Equal(blockData.CurrentBlockHash, "", "Current Block Hash Must be Empty")
+	assert.Equal(blockData.PreviousBlockHash, "", "Previous Block Hash Must be Empty")
+	assert.Equal(blockData.BlockNumber, 0, " Block Number Must be 0")
+	assert.NotEqual(pendingRes.ResultId, "", "Result Id Must be a String ")
+	assert.NotEqual(pendingRes.ResultURL, "", "Result URL Must be a String ")
+	if error != nil {
+		t.Fail()
+	}
+	if pendingRes.ResultId != "" {
+		time.Sleep(4 * time.Second)
+		block, error := x.GetResultForCurrentBlock(context.TODO(), pendingRes.ResultId)
+		if error != nil {
+			t.Fail()
+		}
+		assert.NotEqual(block.BlockNumber, 0, "Block Number Cannot be Zero")
+		assert.NotEqual(block.CurrentBlockHash, "", "Block Hash Cannot be Empty")
+		assert.NotEqual(block.PreviousBlockHash, "", "Block Hash Cannot be Empty")
+
+	}
+	PassFailPrint(*t)
+
+}

@@ -1,0 +1,7 @@
+Apps:
+  Xooa-Get-Set:
+    Name: Get-Set
+    Description: Xooa Simple Smart Contract
+    path: /examples/simple/smartcontract
+    language: go
+    README: https://github.com/Xooa/xooa-go-sdk/examples/simple/README.md
