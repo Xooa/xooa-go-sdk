@@ -1,7 +1,7 @@
 # xooa_client
---
+```go
     import "github.com/Xooa/xooa-go-sdk"
-
+```
 
 ## Usage
 
