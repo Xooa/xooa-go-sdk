@@ -129,8 +129,8 @@ Get current blocks in the network
 func (x *XooaClient) GetCurrentBlockAsync(ctx context.Context, localVarOptionals map[string]interface{}) (models.Block, models.PendingTransactionResponse, *models.XooaApiException)
 ```
 
-    Get current blocks in the network
-* @param ctx context.Context for logging, tracing, etc. 
+Get current blocks in the network
+
 #### func (*XooaClient) GetResultForBlockByNumber
 
 ```go
