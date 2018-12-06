@@ -49,8 +49,7 @@ such as caching.
 ```go
 func (x *XooaClient) AuthenticatedIdentityInformation(ctx context.Context) (models.Identity, *models.XooaApiException)
 ```
-This End Point Returns Information about the Authenticated Identity * @param ctx
-context.Context for authentication, logging, tracing, etc. @return
+This End Point Returns Information about the Authenticated Identity 
 
 #### func (*XooaClient) ConnectEventServer
 
@@ -59,8 +58,7 @@ func (x *XooaClient) ConnectEventServer(callbackFn models.CallbackFn) error
 ```
 
 Initiating connection to Socket io server
-@param callbackFn function to return the events
-@return error
+
 
 #### func (*XooaClient) DeleteIdentity
 
@@ -73,11 +71,7 @@ func (x *XooaClient) DeleteIdentity(ctx context.Context, id string, localVarOpti
 ```go
 func (x *XooaClient) DeleteIdentityAsync(ctx context.Context, id string, localVarOptionals map[string]interface{}) (models.DeleteIdentityResponse, models.PendingTransactionResponse, *models.XooaApiException)
 ```
-Delete Identity. * @param ctx context.Context for authentication, logging,
-tracing, etc. @param id Identity Id @param optional (nil or
-map[string]interface{}) with one or more of: @param "async" (string) Call this
-request asynchronously without waiting for response @param "timeout" (string)
-Request timeout in millisecond @return
+Delete Identity. 
 
 #### func (*XooaClient) EnrollIdentity
 
@@ -91,10 +85,7 @@ enrolled identity. This End Point provides equivalent functionality to adding
 new identity manually using Xooa console, and identities added using this end
 point will appear, and can be managed, using Xooa console under the identities
 tab of the Smart Contract app Required permission: manage identities
-(canManageIdentities&#x3D;true) * @param ctx context.Context for authentication,
-logging, tracing, etc. @param optional (nil or map[string]interface{}) with one
-or more of: @param "async" (string) Call this request asynchronously without
-waiting for response @param "timeout" (string) Request timeout @return
+(canManageIdentities&#x3D;true)
 
 #### func (*XooaClient) EnrollIdentityAsync
 
@@ -108,10 +99,7 @@ enrolled identity. This End Point provides equivalent functionality to adding
 new identity manually using Xooa console, and identities added using this end
 point will appear, and can be managed, using Xooa console under the identities
 tab of the Smart Contract app Required permission: manage identities
-(canManageIdentities&#x3D;true) * @param ctx context.Context for authentication,
-logging, tracing, etc. @param optional (nil or map[string]interface{}) with one
-or more of: @param "async" (string) Call this request asynchronously without
-waiting for response @param "timeout" (string) Request timeout @return
+(canManageIdentities&#x3D;true) 
 
 #### func (*XooaClient) GetBlockByNumber
 
@@ -119,32 +107,21 @@ waiting for response @param "timeout" (string) Request timeout @return
 func (x *XooaClient) GetBlockByNumber(ctx context.Context, blockNumber string, localVarOptionals map[string]interface{}) (models.BlockTransactionCount, models.PendingTransactionResponse, *models.XooaApiException)
 ```
 Get specific block information such as hash, # of transactions * @param ctx
-context.Context for logging, tracing, etc. @param blockNumber Block number to
-fetch data @param optional (nil or map[string]interface{}) with one or more of:
-@param "async" (string) Call this request asynchronously without waiting for
-response @param "timeout" (string) Request timeout in millisecond @return
+context.Context for logging, tracing, etc.
 
 #### func (*XooaClient) GetBlockByNumberAsync
 
 ```go
 func (x *XooaClient) GetBlockByNumberAsync(ctx context.Context, blockNumber string, localVarOptionals map[string]interface{}) (models.BlockTransactionCount, models.PendingTransactionResponse, *models.XooaApiException)
 ```
-Get specific block information such as hash, # of transactions * @param ctx
-context.Context for authentication, logging, tracing, etc. @param blockNumber
-Block number to fetch data @param optional (nil or map[string]interface{}) with
-one or more of: @param "async" (string) Call this request asynchronously without
-waiting for response @param "timeout" (string) Request timeout in millisecond
-@return
+Get specific block information such as hash, # of transactions 
 
 #### func (*XooaClient) GetCurrentBlock
 
 ```go
 func (x *XooaClient) GetCurrentBlock(ctx context.Context, localVarOptionals map[string]interface{}) (models.Block, models.PendingTransactionResponse, *models.XooaApiException)
 ```
-Get current blocks in the network * @param ctx context.Context for logging,
-tracing, etc. @param optional (nil or map[string]interface{}) with one or more
-of: @param "async" (string) Call this request asynchronously without waiting for
-response @param "timeout" (string) Request timeout in millisecond @return
+Get current blocks in the network 
 
 #### func (*XooaClient) GetCurrentBlockAsync
 
@@ -153,90 +130,68 @@ func (x *XooaClient) GetCurrentBlockAsync(ctx context.Context, localVarOptionals
 ```
 
     Get current blocks in the network
-* @param ctx context.Context for logging, tracing, etc. @param optional (nil or
-map[string]interface{}) with one or more of: @param "async" (string) Call this
-request asynchronously without waiting for response @param "timeout" (string)
-Request timeout in millisecond @return
-
+* @param ctx context.Context for logging, tracing, etc. 
 #### func (*XooaClient) GetResultForBlockByNumber
 
 ```go
 func (x *XooaClient) GetResultForBlockByNumber(ctx context.Context, resultId string) (models.BlockTransactionCount, *models.XooaApiException)
 ```
-API Returns result of previously submitted transaction * @param ctx
-context.Context for authentication, logging, tracing, etc. @param resultId
-Returned in previous BlockByNumber Operation @return
+API Returns result of previously submitted transaction 
 
 #### func (*XooaClient) GetResultForCurrentBlock
 
 ```go
 func (x *XooaClient) GetResultForCurrentBlock(ctx context.Context, resultId string) (models.Block, *models.XooaApiException)
 ```
-API Returns result of previously submitted transaction * @param ctx
-context.Context for authentication, logging, tracing, etc. @param resultId
-Returned in previous CurrentBlock Operation @return
-
+API Returns result of previously submitted transaction
 #### func (*XooaClient) GetResultForDeleteIdentity
 
 ```go
 func (x *XooaClient) GetResultForDeleteIdentity(ctx context.Context, resultId string) (models.DeleteIdentityResponse, *models.XooaApiException)
 ```
-API Returns result of previously submitted transaction * @param ctx
-context.Context for authentication, logging, tracing, etc. @param resultId
-Returned in previous DeleteIdentity Operation @return
+API Returns result of previously submitted transaction 
 
 #### func (*XooaClient) GetResultForEnrollIdentity
 
 ```go
 func (x *XooaClient) GetResultForEnrollIdentity(ctx context.Context, resultId string) (models.Identity, *models.XooaApiException)
 ```
-API Returns result of previously submitted transaction * @param ctx
-context.Context for authentication, logging, tracing, etc. @param resultId
-Returned in previous Enroll Identity Operation @return
+API Returns result of previously submitted transaction 
 
 #### func (*XooaClient) GetResultForInvoke
 
 ```go
 func (x *XooaClient) GetResultForInvoke(ctx context.Context, resultId string) (models.InvokeResponse, *models.XooaApiException)
 ```
-API Returns result of previously submitted transaction * @param ctx
-context.Context for authentication, logging, tracing, etc. @param resultId
-Returned in previous Invoke Operation @return
+API Returns result of previously submitted transaction 
 
 #### func (*XooaClient) GetResultForQuery
 
 ```go
 func (x *XooaClient) GetResultForQuery(ctx context.Context, resultId string) (models.Query, *models.XooaApiException)
 ```
-API Returns result of previously submitted transaction * @param ctx
-context.Context for authentication, logging, tracing, etc. @param resultId
-Returned in previous Query Operation @return
+API Returns result of previously submitted transaction 
 
 #### func (*XooaClient) GetResultForRegenerateTokenAsync
 
 ```go
 func (x *XooaClient) GetResultForRegenerateTokenAsync(ctx context.Context, resultId string) (models.RegenerateIdentityResponse, *models.XooaApiException)
 ```
-API Returns result of previously submitted transaction * @param ctx
-context.Context for authentication, logging, tracing, etc. @param resultId
-Returned in previous RegenerateToken Operation @return
+API Returns result of previously submitted transaction 
 
 #### func (*XooaClient) IdentitiesGetAllIdentities
 
 ```go
 func (x *XooaClient) IdentitiesGetAllIdentities(ctx context.Context) ([]models.Identity, *models.XooaApiException)
 ```
-Get all identities from the identity registry * @param ctx context.Context for
-authentication, logging, tracing, etc. @return
+Get all identities from the identity registry 
 
 #### func (*XooaClient) IdentityInformation
 
 ```go
 func (x *XooaClient) IdentityInformation(ctx context.Context, id string) (models.Identity, *models.XooaApiException)
 ```
-Get the specified identity from the identity registry * @param ctx
-context.Context for authentication, logging, tracing, etc. @param id Identity Id
-@return
+Get the specified identity from the identity registry 
 
 #### func (*XooaClient) Invoke
 
@@ -244,12 +199,6 @@ context.Context for authentication, logging, tracing, etc. @param id Identity Id
 func (x *XooaClient) Invoke(ctx context.Context, fcn string, localVarOptionals map[string]interface{}, localVarPostBody interface{}) (models.InvokeResponse, models.PendingTransactionResponse, *models.XooaApiException)
 ```
 The Invoke API End Point is used for submitting transaction for processing by the blockchain Smart Contract app. The end point must call a function already defined in your Smart Contract app which will process the Invoke request. The function name is part of the endpoint URL, or can be entered as the fcn parameter  when testing using the Sandbox. For example, if testing the sample get-set Smart Contract app, use ‘set’ (without quotes)  as the value for fcn.   The function arguments (number of arguments and type) is determined by the Smart Contract. The Smart Contract is also responsible for arguments validation and exception management. The payload object of Invoke Transaction Response in case of Final Response is determined by the Smart Contract app.   A success response may be either 200 or 202. For more details refer to Synchronous vs Asynchronous Calls Required permission: write (\&quot;Access\&quot;:\&quot;rw\&quot;)
-* @param ctx context.Context for authentication, logging, tracing, etc.
-@param fcn The blockchain Smart Contract app function name to invoke
-@param optional (nil or map[string]interface{}) with one or more of:
-@param "async" (string) Call this request asynchronously without waiting for response
-@param "timeout" (string) Request timeout in millisecond
-@return
 
 #### func (*XooaClient) InvokeAsync
 
@@ -267,11 +216,7 @@ Contract. The Smart Contract is also responsible for arguments validation and
 exception management. The payload object of Invoke Transaction Response in case
 of Final Response is determined by the Smart Contract app. A success response
 may be either 200 or 202. For more details refer to Synchronous vs Asynchronous
-Calls Required permission: write (\&quot;Access\&quot;:\&quot;rw\&quot;) *
-@param ctx context.Context for authentication, logging, tracing, etc. @param fcn
-The blockchain Smart Contract app function name to invoke @param optional (nil
-or map[string]interface{}) with one or more of: @param "timeout" (string)
-Request timeout in millisecond @return
+Calls Required permission: write (\&quot;Access\&quot;:\&quot;rw\&quot;) 
 
 #### func (*XooaClient) Query
 
@@ -280,13 +225,7 @@ func (x *XooaClient) Query(ctx context.Context, fcn string, localVarOptionals ma
 ```
 
 The query API End Point is used for querying blockchain state. The end point must call a function already defined in your Smart Contract app which will process the query request. The function name is part of the endpoint URL, or can be entered as the fcn parameter  when testing using the Sandbox. The function arguments (number of arguments and type) is determined by the Smart Contract. The Smart Contract is responsible for validation and exception management. For example, if testing the sample get-set Smart Contract app, enter ‘get’ (without quotes) as the value for fcn.   The response body is also determined by the Smart Contract app, and that’s also the reason why a consistent response sample is unavailable for this end point. A success response may be either 200 or 202. For more details refer to Synchronous vs Asynchronous Calls. In contrast to Invoke, the Query end point will often return fast even when called in Synchronous mode  Required permission: read (\&quot;Access\&quot;:\&quot;rw\&quot; or \&quot;Access\&quot;:\&quot;r\&quot;)
-* @param ctx context.Context for authentication, logging, tracing, etc.
-@param fcn The blockchain Smart Contract app function name to call
-@param optional (nil or map[string]interface{}) with one or more of:
-@param "args" (string) Argument(s) to pass to the blockchain Smart Contract app function. example - [\&quot;arg1\&quot;,\&quot;arg2\&quot;]
-@param "async" (string) Call this request asynchronously without waiting for response
-@param "timeout" (string) Request timeout in millisecond
-@return
+
 
 #### func (*XooaClient) QueryAsync
 
@@ -306,21 +245,14 @@ unavailable for this end point. A success response may be either 200 or 202. For
 more details refer to Synchronous vs Asynchronous Calls. In contrast to Invoke,
 the Query end point will often return fast even when called in Synchronous mode
 Required permission: read (\&quot;Access\&quot;:\&quot;rw\&quot; or
-\&quot;Access\&quot;:\&quot;r\&quot;) * @param ctx context.Context for
-authentication, logging, tracing, etc. @param fcn The blockchain Smart Contract
-app function name to call @param optional (nil or map[string]interface{}) with
-one or more of: @param "args" (string) Argument(s) to pass to the blockchain
-Smart Contract app function. example - [\&quot;arg1\&quot;,\&quot;arg2\&quot;]
-@param "async" (string) Call this request asynchronously without waiting for
-response @param "timeout" (string) Request timeout in millisecond @return
+\&quot;Access\&quot;:\&quot;r\&quot;) 
 
 #### func (*XooaClient) RegenerateToken
 
 ```go
 func (x *XooaClient) RegenerateToken(ctx context.Context, id string, localVarOptionals map[string]interface{}) (models.Identity, models.PendingTransactionResponse, *models.XooaApiException)
 ```
-Regenerate Identity API Token * @param ctx context.Context for authentication,
-logging, tracing, etc. @param id Identity Id @return
+Regenerate Identity API Token 
 
 #### func (*XooaClient) RegenerateTokenAsync
 
