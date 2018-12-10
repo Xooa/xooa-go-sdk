@@ -1,7 +1,7 @@
 # Xooa Go SDK
 ## Installation
 
-```go
+```bash
 go get github.com/Xooa/xooa-go-sdk
 ```
 
