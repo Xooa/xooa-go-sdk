@@ -271,14 +271,6 @@ func (x *XooaClient) Result(ctx context.Context, resultId string) (models.Result
 ```go
 func (x *XooaClient) SubscribeAllEvents() error
 ```
-Putting a Regex `"a*"` to capture all the events
-
-#### func (*XooaClient) SubscribeEvents
-
-```go
-func (x *XooaClient) SubscribeEvents(regEx string) error
-```
-To capture the specific events specified in the call
 
 #### func (*XooaClient) UnSubscribe
 

@@ -23,7 +23,6 @@ import (
 	"sync"
 	"time"
 	"net/url"
-	"regexp"
 	log "github.com/sirupsen/logrus"
 	"github.com/Xooa/xooa-go-sdk/models"
 )
@@ -32,12 +31,6 @@ type EventClientService service
 
 //Checking for the last TxId to avoid Duplication
 var EventPool string
-
-// Reg exp to for all events
-var RegExp  = "a*"
-
-// Regex instance for handling Event Subscription
-var RegExpI *regexp.Regexp
 
 // Maintaining Socket io client to support connection close
 var C *gosocketio.Client
@@ -53,7 +46,7 @@ func sendJoin(c *gosocketio.Channel) {
 */
 func (a *EventClientService)  ConnectEventServer(callbackFn models.CallbackFn) error {
 	//Parsing URL for Hostname
-	urlD,err := url.Parse(BasePath)
+	urlD, err := url.Parse(BasePath)
 	if err != nil {
 		log.Fatal(err);
 	}
@@ -73,13 +66,8 @@ func (a *EventClientService)  ConnectEventServer(callbackFn models.CallbackFn) e
 	err = c.On("event", func(h *gosocketio.Channel, args models.Message) {
 		if checkForDuplicate(args.TxId) {
 			EventPool = args.TxId;
-			RegExpI = regexp.MustCompile(RegExp)
-			if RegExpI.MatchString(args.EventName) {
-				callbackFn(args)
-			}
+			callbackFn(args)
 		}
-
-
 
 	})
 	if err != nil {
@@ -112,15 +100,14 @@ func (a *EventClientService)  ConnectEventServer(callbackFn models.CallbackFn) e
 
 }
 
-//Putting a Regex `"a*"` to capture all the events
-func(a *EventClientService) SubscribeAllEvents() error{
-	RegExp = "a*"
+//capture all the events
+func (a *EventClientService) SubscribeAllEvents() error {
 	return nil
 }
 
 
 // UnSubscribing all the eventa
-func(a *EventClientService) UnSubscribe() {
+func (a *EventClientService) UnSubscribe() {
 	C.Close()
 }
 
@@ -144,6 +131,6 @@ func keepAlive(c *gosocketio.Client) {
 }
 
 // Checking for Duplicate Event
-func checkForDuplicate(eventId string) bool{
+func checkForDuplicate(eventId string) bool {
 	return EventPool != eventId
 }
