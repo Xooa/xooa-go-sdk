@@ -307,12 +307,6 @@ func (x *XooaClient) SubscribeAllEvents() (error) {
 
 }
 
-// To capture the specific events specified in the call
-func (x *XooaClient) SubscribeEvents(regEx string) (error) {
-	return x.Xooa.EventClientService.SubscribeEvents(regEx)
-
-}
-
 // UnSubscribing all the eventa
 func (x *XooaClient) UnSubscribe()  {
 	x.Xooa.EventClientService.UnSubscribe()

@@ -18,11 +18,13 @@
 package main
 
 import (
-	"go-client"
-	"go-client/lib"
+	"github.com/Xooa/xooa-go-sdk"
+	"github.com/Xooa/xooa-go-sdk/lib"
 	"fmt"
 	"context"
-	"go-client/models"
+	"github.com/Xooa/xooa-go-sdk/models"
+	"go-client"
+	"go-client/lib"
 )
 
 func Init() {
