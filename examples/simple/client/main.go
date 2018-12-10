@@ -23,8 +23,6 @@ import (
 	"fmt"
 	"context"
 	"github.com/Xooa/xooa-go-sdk/models"
-	"go-client"
-	"go-client/lib"
 )
 
 func Init() {
@@ -157,7 +155,7 @@ func EventFunctions() {
 	x.ConnectEventServer(callbackFun);
 
 	//Subscribing to specific events this will listen to the specific event passed as a keyword in the function argument
-	x.SubscribeEvents("set");
+	x.SubscribeAllEvents();
 }
 
 // Callback function for event

@@ -24,7 +24,7 @@ import (
 	"context"
 	"fmt"
 	"encoding/json"
-	"go-client/models"
+	"github.com/Xooa/xooa-go-sdk/models"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -23,7 +23,7 @@ import (
 	"strings"
 	"golang.org/x/net/context"
 	"fmt"
-	"go-client/models"
+	"github.com/Xooa/xooa-go-sdk/models"
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
 )

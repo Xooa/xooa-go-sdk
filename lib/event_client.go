@@ -25,7 +25,7 @@ import (
 	"net/url"
 	"regexp"
 	log "github.com/sirupsen/logrus"
-	"go-client/models"
+	"github.com/Xooa/xooa-go-sdk/models"
 )
 
 type EventClientService service
