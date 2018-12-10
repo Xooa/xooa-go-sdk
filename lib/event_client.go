@@ -119,17 +119,6 @@ func(a *EventClientService) SubscribeAllEvents() error{
 }
 
 
-// TO capture the specific events specified in the call
-func(a *EventClientService) SubscribeEvents(regEx string) error{
-	if regEx == "" {
-		log.Error("regEx Cannot be Empty")
-		return nil
-	}
-
-	RegExp = regEx
-	return nil
-}
-
 // UnSubscribing all the eventa
 func(a *EventClientService) UnSubscribe() {
 	C.Close()
