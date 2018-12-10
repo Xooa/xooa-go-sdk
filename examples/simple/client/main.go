@@ -29,7 +29,7 @@ func Init() {
 	url := "https://api.xooa.com/api/v1"
 
 	//TODO fill your token here
-	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcGlLZXkiOiJKSFAyR1BKLTdHVE03U0UtTllFN1lXOS1YVjZDUTkzIiwiQXBpU2VjcmV0IjoidDV4NnJEZDVNcHdrU3ZBIiwiUGFzc3BocmFzZSI6ImYyOWRmOGQ1M2Q1ODE2MWI3M2Q1ODEyYWVmN2JmMDgwIiwiaWF0IjoxNTQ0NDE1OTk1fQ.1QGfAIeXFz6q1N4KOPjTAmP7OcAcHD7r3r7zaUCphTs"
+	token := "<YOUR_APP_TOKEN_HERE>"
 	// Set log level to info
 	// [TraceLevel:"trace",DebugLevel:"debug",InfoLevel:"info",WarnLevel:"warning",ErrorLevel:"error",FatalLevel: "fatal" PanicLevel:"panic"]
 	xooa_client.SetLogLevel("info")
