@@ -123,7 +123,7 @@ func (a *ResultApiService) GetResultForCurrentBlock(ctx context.Context, resultI
 		log.Error(error)
 		return block,error
 	}
-	mapstructure.Decode(res.Payload,&block)
+	mapstructure.Decode(res.Result,&block)
 	return block,error
 
 
@@ -141,9 +141,9 @@ func (a *ResultApiService) GetResultForBlockByNumber(ctx context.Context, result
 		log.Error(error)
 		return block,error
 	}
-	res.Payload["previousHash"] = res.Payload["previous_hash"]
-	res.Payload["dataHash"] = res.Payload["data_hash"]
-	mapstructure.Decode(res.Payload,&block,)
+	res.Result["previousHash"] = res.Result["previous_hash"]
+	res.Result["dataHash"] = res.Result["data_hash"]
+	mapstructure.Decode(res.Result,&block,)
 	return block,error
 
 
@@ -162,7 +162,7 @@ func (a *ResultApiService) GetResultForInvoke(ctx context.Context, resultId stri
 		return invoke,error
 	}
 
-	mapstructure.Decode(res.Payload,&invoke)
+	mapstructure.Decode(res.Result,&invoke)
 	return invoke,error
 
 
@@ -181,7 +181,7 @@ func (a *ResultApiService) GetResultForQuery(ctx context.Context, resultId strin
 		return query,error
 	}
 
-	mapstructure.Decode(res.Payload,&query)
+	mapstructure.Decode(res.Result,&query)
 	return query,error
 }
 
@@ -197,7 +197,7 @@ func (a *ResultApiService) GetResultForEnrollIdentity(ctx context.Context, resul
 		log.Error(error)
 		return identity,error
 	}
-	mapstructure.Decode(res.Payload,&identity)
+	mapstructure.Decode(res.Result,&identity)
 	return identity,error
 }
 
@@ -213,7 +213,7 @@ func (a *ResultApiService) GetResultForDeleteIdentity(ctx context.Context, resul
 		log.Error(error)
 		return identity,error
 	}
-	mapstructure.Decode(res.Payload,&identity)
+	mapstructure.Decode(res.Result,&identity)
 	return identity,error
 }
 
@@ -229,7 +229,7 @@ func (a *ResultApiService) GetResultForRegenerateTokenAsync(ctx context.Context,
 		log.Error(error)
 		return regenerateResponse,error
 	}
-	mapstructure.Decode(res.Payload,&regenerateResponse)
+	mapstructure.Decode(res.Result,&regenerateResponse)
 	return regenerateResponse,error
 }
 

@@ -50,7 +50,7 @@ type XooaClient struct {
 	AppId              string
 	Cfg                *Configuration
 	common             service // Reuse a single struct instead of allocating one for each service on the heap.
-	LogLevel	   string
+	LogLevel           string
 				   // API Services
 	BlockchainApi      *BlockchainApiService
 	IdentitiesApi      *IdentitiesApiService
@@ -58,15 +58,13 @@ type XooaClient struct {
 	QueryApi           *QueryApiService
 	ResultApi          *ResultApiService
 	EventClientService *EventClientService
-
 }
 
 type service struct {
 	client *XooaClient
 }
 
-
-func GetLogLevel(level string) (log.Level,error) {
+func GetLogLevel(level string) (log.Level, error) {
 	return log.ParseLevel(level)
 }
 
@@ -91,9 +89,9 @@ func NewXooaClient(cfg *Configuration) (*XooaClient) {
 	c.EventClientService = (*EventClientService)(&c.common)
 
 	//Getting log level for Error
-	level , err := GetLogLevel(LogLevel)
+	level, err := GetLogLevel(LogLevel)
 	if err != nil {
-		 log.Error(err);
+		log.Error(err);
 	}
 	//Setting log level
 	log.SetLevel(level);
@@ -386,7 +384,6 @@ func detectContentType(body interface{}) string {
 
 	return contentType
 }
-
 
 type cacheControl map[string]string
 

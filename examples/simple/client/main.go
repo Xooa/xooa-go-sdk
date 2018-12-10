@@ -29,7 +29,7 @@ func Init() {
 	url := "https://api.xooa.com/api/v1"
 
 	//TODO fill your token here
-	token := "<YOUR_TOKEN_HERE>"
+	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcGlLZXkiOiJKSFAyR1BKLTdHVE03U0UtTllFN1lXOS1YVjZDUTkzIiwiQXBpU2VjcmV0IjoidDV4NnJEZDVNcHdrU3ZBIiwiUGFzc3BocmFzZSI6ImYyOWRmOGQ1M2Q1ODE2MWI3M2Q1ODEyYWVmN2JmMDgwIiwiaWF0IjoxNTQ0NDE1OTk1fQ.1QGfAIeXFz6q1N4KOPjTAmP7OcAcHD7r3r7zaUCphTs"
 	// Set log level to info
 	// [TraceLevel:"trace",DebugLevel:"debug",InfoLevel:"info",WarnLevel:"warning",ErrorLevel:"error",FatalLevel: "fatal" PanicLevel:"panic"]
 	xooa_client.SetLogLevel("info")
@@ -47,8 +47,8 @@ type Payload struct {
 
 func main() {
 	Init()
-	//AppFunctions()
-	EventFunctions()
+	AppFunctions()
+	//EventFunctions()
 
 }
 
@@ -107,13 +107,13 @@ func AppFunctions() {
 	identityEnrolled, _, _ := x.EnrollIdentity(context.TODO(), map[string]interface{}{}, identityN)
 	fmt.Println(identityEnrolled)
 
+	//Generates new identity API Token. Required permission: manage identities (canManageIdentities=true)
+	identityR, _, _ := x.RegenerateToken(context.TODO(), identityEnrolled.Id, map[string]interface{}{})
+	fmt.Println(identityR)
+
 	//Deletes an identity. Required permission: manage identities (canManageIdentities=true)
 	identityD, _, _ := x.DeleteIdentity(context.TODO(), identityEnrolled.Id, map[string]interface{}{})
 	fmt.Println(identityD)
-	//Generates new identity API Token. Required permission: manage identities (canManageIdentities=true)
-	identityEnrolled, _, _ = x.EnrollIdentity(context.TODO(), map[string]interface{}{}, identityN)
-	identityR, _, _ := x.RegenerateToken(context.TODO(), identity.Id, map[string]interface{}{})
-	fmt.Println(identityR)
 
 	//########################################################################
 	//########## Invoke Module Api's #########################################
