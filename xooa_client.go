@@ -18,8 +18,8 @@
 package xooa_client
 
 import (
-	"go-client/lib"
-	"go-client/models"
+	"github.com/Xooa/xooa-go-sdk/lib"
+	"github.com/Xooa/xooa-go-sdk/models"
 	"context"
 )
 
