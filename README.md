@@ -1,8 +1,16 @@
 # Xooa Go SDK
+##Installation
+
 ```go
-import "github.com/Xooa/xooa-go-sdk"
+go get github.com/Xooa/xooa-go-sdk
 ```
 
+####Import
+ ```go
+ import "github.com/Xooa/xooa-go-sdk"
+ ```
+ 
+ 
 ## Usage
 
 #### func  SetLogLevel
