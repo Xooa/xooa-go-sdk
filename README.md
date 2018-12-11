@@ -1,4 +1,7 @@
 # Xooa Go SDK
+
+The official Xooa SDK for Go.
+
 ## Installation
 
 ```bash
@@ -215,15 +218,7 @@ func (x *XooaClient) InvokeAsync(ctx context.Context, fcn string, localVarOption
 ```
 The Invoke API End Point is used for submitting transaction for processing by
 the blockchain Smart Contract app. The end point must call a function already
-defined in your Smart Contract app which will process the Invoke request. The
-function name is part of the endpoint URL, or can be entered as the fcn
-parameter when testing using the Sandbox. For example, if testing the sample
-get-set Smart Contract app, use ‘set’ (without quotes) as the value for fcn. The
-function arguments (number of arguments and type) is determined by the Smart
-Contract. The Smart Contract is also responsible for arguments validation and
-exception management. The payload object of Invoke Transaction Response in case
-of Final Response is determined by the Smart Contract app. A success response
-may be either 200 or 202. For more details refer to Synchronous vs Asynchronous
+defined in your Smart Contract app which will process the Invoke request.
 Calls Required permission: write ("Access":"rw") 
 
 #### func (*XooaClient) Query
@@ -242,16 +237,7 @@ func (x *XooaClient) QueryAsync(ctx context.Context, fcn string, localVarOptiona
 ```
 The query API End Point is used for querying blockchain state. The end point
 must call a function already defined in your Smart Contract app which will
-process the query request. The function name is part of the endpoint URL, or can
-be entered as the fcn parameter when testing using the Sandbox. The function
-arguments (number of arguments and type) is determined by the Smart Contract.
-The Smart Contract is responsible for validation and exception management. For
-example, if testing the sample get-set Smart Contract app, enter ‘get’ (without
-quotes) as the value for fcn. The response body is also determined by the Smart
-Contract app, and that’s also the reason why a consistent response sample is
-unavailable for this end point. A success response may be either 200 or 202. For
-more details refer to Synchronous vs Asynchronous Calls. In contrast to Invoke,
-the Query end point will often return fast even when called in Synchronous mode
+process the query request. 
 Required permission: read ("Access":"rw" or
 "Access":"r") 
 
@@ -286,3 +272,9 @@ func (x *XooaClient) SubscribeAllEvents() error
 func (x *XooaClient) UnSubscribe()
 ```
 UnSubscribing all the event
+
+## License
+
+This SDK is distributed under the Apache License, Version 2.0, see LICENSE.txt and NOTICE.txt for more information.
+
+
