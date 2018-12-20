@@ -60,8 +60,8 @@ func PassFailPrint(t testing.T){
 }
 
 func Init() {
-	url := "https://api.staging.xooa.io/api/v1"
-	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcGlLZXkiOiJaODlZMEVQLUZRMjQzS0ctSkJNWjJNWi1RRjJHMlNGIiwiQXBpU2VjcmV0IjoiS2tOb2QybUJZMWc0eXl4IiwiUGFzc3BocmFzZSI6ImI5ZTgyNTBjZmQwODA2NTVmOTQ4MzNmMGYyN2VjZDllIiwiaWF0IjoxNTQxMDU1OTY4fQ.2RnWJ-93Gvo3cbkM37u-t_ZFVn6NyCLbxTctO3Zu5ZI"
+	url := "https://api.xooa.com/api/v1"
+	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcGlLZXkiOiJZQTYxV1RTLUZOVjRETU4tSFAzUlBXUy00RlJKODRQIiwiQXBpU2VjcmV0IjoiWElkVTJSd3U4YVVaOHJuIiwiUGFzc3BocmFzZSI6IjQyMzBiYzczMmYwMTY1OGZjNTQ0Njk0N2I2N2Q1NjY2IiwiaWF0IjoxNTQ1MzA3MTAxfQ.1tssnKC550rali-YtxTxAcXlA1krzI4jmVogk2jdWMM"
 	logLevel := "info"
 	xooa_client.SetUrl(url)
 	xooa_client.SetToken(token)
@@ -88,10 +88,10 @@ func TestGetBlockByNumber(t *testing.T) {
 	assert.Equal(pendingRes.ResultId, "", "Response Cannot be pending")
 	assert.Equal(pendingRes.ResultURL, "", "Response Cannot be pending")
 	if errB != nil {
-
+		fmt.Println(err);
+		t.Fail()
 	}
 	PassFailPrint(*t)
-
 }
 
 func TestGetBlockByNumberAsync(t *testing.T) {
@@ -127,8 +127,6 @@ func TestGetBlockByNumberAsync(t *testing.T) {
 
 	}
 	PassFailPrint(*t)
-
-
 }
 
 func TestGetCurrentBlock(t *testing.T) {

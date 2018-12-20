@@ -33,6 +33,17 @@ type Payload struct {
 	Args []string `json:"args"`
 }
 
+func Before() string {
+	cfg, err := xooa.NewConfiguration()
+	if err != nil {
+		fmt.Println(err);
+	}
+	x := xooa_client.NewXooaClient(cfg)
+	invokeResponse , _,_ := x.Invoke(context.TODO(),"set",map[string]interface{}{"timeout" : "10000"},Payload{Args:[]string{"arg1","arg2"}})
+	return  invokeResponse.TxId;
+}
+
+
 func TestInvoke(t *testing.T){
 	Init()
 	assert := assert.New(t)
@@ -86,5 +97,64 @@ func TestInvokeAsync(t *testing.T){
 	}
 	PassFailPrint(*t)
 }
+
+func TestGetTransactionByTransactionId(t *testing.T) {
+	Init()
+	txId := Before()
+	assert := assert.New(t)
+
+	cfg, err := xooa.NewConfiguration()
+	if err != nil {
+		fmt.Println(err);
+		t.Fail()
+	}
+	x := xooa_client.NewXooaClient(cfg)
+
+	transactionData, pendingRes, errB := x.GetTransactionByTransactionId(context.TODO(), txId, map[string]interface{}{})
+	assert.NotEqual(transactionData.TxId, "", "Tx Id Cannot be Empty")
+	assert.NotEqual(len(transactionData.EndorserMspId), 0, " Endorser MspId Cannot be Zero")
+	assert.NotEqual(transactionData.SmartContract, "", " SmartContract must be a Stirng")
+	assert.Equal(pendingRes.ResultId, "", "Response Cannot be pending")
+	assert.Equal(pendingRes.ResultURL, "", "Response Cannot be pending")
+	if errB != nil {
+		fmt.Println(err);
+		t.Fail()
+	}
+	PassFailPrint(*t)
+}
+
+func TestGetTransactionByTransactionIdAsync(t *testing.T) {
+	Init()
+	assert := assert.New(t)
+	txId := Before()
+	cfg, err := xooa.NewConfiguration()
+	if err != nil {
+		fmt.Println(err);
+		t.Fail()
+	}
+	x := xooa_client.NewXooaClient(cfg)
+
+	transactionData, pendingRes, errorI := x.GetTransactionByTransactionIdAsync(context.TODO(), txId, map[string]interface{}{})
+	assert.Equal(transactionData.TxId, "", "Must Empty")
+	assert.Equal(transactionData.CreatorMspId, "", "Must Empty")
+	assert.Equal(len(transactionData.EndorserMspId),0 , " Must Zero")
+	assert.NotEqual(pendingRes.ResultId, "", "Result Id Must be a String ")
+	assert.NotEqual(pendingRes.ResultURL, "", "Result URL Must be a String ")
+	if errorI != nil {
+		t.Fail()
+	}
+	if pendingRes.ResultId != "" {
+		time.Sleep(4 * time.Second)
+		transactionData, errorI := x.GetResultForTransactionByTransactionId(context.TODO(), pendingRes.ResultId)
+		if errorI != nil {
+			t.Fail()
+		}
+		assert.NotEqual(transactionData.TxId, "", "Tx Id Cannot be Empty")
+		assert.NotEqual(transactionData.SmartContract, "", " SmartContract must be a Stirng")
+
+	}
+	PassFailPrint(*t)
+}
+
 
 

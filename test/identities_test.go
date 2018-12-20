@@ -43,7 +43,6 @@ func TestAuthenticatedIdentityInformation(t *testing.T){
 		t.Fail()
 	}
 	assert.NotEqual(identity.Access,"","Must be a non empty String")
-	assert.NotEqual(identity.ApiToken,"","Must be a non empty String")
 	assert.NotEqual(identity.Id,"","Must be a non empty String")
 	assert.NotEqual(identity.IdentityName,"","Must be a non empty String")
 	assert.NotEqual(identity.CreatedAt,"0001-01-01 00:00:00 +0000 UTC","Must be a non empty time String ")
@@ -67,7 +66,6 @@ func TestIdentitiesGetAllIdentities(t *testing.T){
 		fmt.Println(errI)
 		t.Fail()
 	}
-	assert.NotEqual(identity[0].ApiToken,"","Must be a non empty String")
 	assert.NotEqual(identity[0].Id,"","Must be a non empty String")
 	assert.NotEqual(identity[0].IdentityName,"","Must be a non empty String")
 	assert.NotEqual(identity[0].CreatedAt,"0001-01-01 00:00:00 +0000 UTC","Must be a non empty time String ")
@@ -92,7 +90,6 @@ func TestIdentityInformation(t *testing.T) {
 		t.Fail()
 	}
 	assert.NotEqual(identity.Access,"","Must be a non empty String")
-	assert.NotEqual(identity.ApiToken,"","Must be a non empty String")
 	assert.NotEqual(identity.Id,"","Must be a non empty String")
 	assert.NotEqual(identity.IdentityName,"","Must be a non empty String")
 	assert.NotEqual(identity.CreatedAt,"0001-01-01 00:00:00 +0000 UTC","Must be a non empty time String ")
@@ -372,7 +369,6 @@ func TestRegenerateTokenAsync(t *testing.T){
 	assert.Equal(pendingTransaction.ResultId,"","Must be an empty string ")
 	assert.Equal(pendingTransaction.ResultURL,"","Must be an empty string ")
 
-
 	identityR,pendingTransaction,errI := x.RegenerateTokenAsync(context.TODO(),identity.Id,map[string]interface{}{})
 	if errI != nil {
 		fmt.Println(errI)
@@ -382,12 +378,18 @@ func TestRegenerateTokenAsync(t *testing.T){
 	assert.NotEqual(pendingTransaction.ResultId,"","Must be a non empty String")
 	assert.NotEqual(pendingTransaction.ResultURL,"","Must be a non empty String ")
 	if pendingTransaction.ResultId != "" {
-		time.Sleep(4 * time.Second)
-		regenerateResponse, error := x.GetResultForRegenerateTokenAsync(context.TODO(), pendingTransaction.ResultId)
-		if error != nil {
+		time.Sleep(8 * time.Second)
+		regenerateResponse, errorI := x.GetResultForRegenerateTokenAsync(context.TODO(), pendingTransaction.ResultId)
+		if errorI != nil {
 			t.Fail()
 		}
-		assert.Equal(regenerateResponse.Success,true,"Must be true")
+		assert.NotEqual(regenerateResponse.Access,"","Must be a non empty String")
+		assert.NotEqual(regenerateResponse.ApiToken,identity.ApiToken,"Api Token must change after Regenerating")
+		assert.NotEqual(regenerateResponse.Id,"","Must be a non empty String")
+		assert.NotEqual(regenerateResponse.IdentityName,"","Must be a non empty String")
+		assert.NotEqual(regenerateResponse.CreatedAt,"0001-01-01 00:00:00 +0000 UTC","Must be a non empty time String ")
+		assert.NotEqual(regenerateResponse.Attrs[0].Name,"","Must be a non empty String")
+		assert.NotEqual(regenerateResponse.Attrs[0].Value,"","Must be a non empty String")
 	}
 	PassFailPrint(*t)
 }
