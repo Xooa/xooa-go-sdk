@@ -23,8 +23,8 @@ import (
 	"fmt"
 	"context"
 	"time"
-	"go-client/lib"
-	"go-client"
+	"github.com/Xooa/xooa-go-sdk/lib"
+	"github.com/Xooa/xooa-go-sdk"
 )
 
 

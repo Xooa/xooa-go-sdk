@@ -20,11 +20,11 @@ package test
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
-	"go-client/lib"
+	"github.com/Xooa/xooa-go-sdk/lib"
 	"fmt"
 	"context"
 	"time"
-	"go-client"
+	"github.com/Xooa/xooa-go-sdk"
 )
 
 

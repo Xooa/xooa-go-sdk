@@ -20,12 +20,12 @@ package test
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
-	"go-client/lib"
+	"github.com/Xooa/xooa-go-sdk/lib"
 	"fmt"
 	"context"
-	"go-client/models"
+	"github.com/Xooa/xooa-go-sdk/models"
 	"time"
-	"go-client"
+	"github.com/Xooa/xooa-go-sdk"
 )
 
 func TestAuthenticatedIdentityInformation(t *testing.T){

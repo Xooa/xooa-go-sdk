@@ -18,7 +18,7 @@
 package test
 
 import (
-	"go-client/lib"
+	"github.com/Xooa/xooa-go-sdk/lib"
 	"fmt"
 	"context"
 	"testing"
@@ -26,7 +26,7 @@ import (
 	"time"
 	"github.com/fatih/color"
 	"runtime"
-	"go-client"
+	"github.com/Xooa/xooa-go-sdk"
 )
 // MyCaller returns the caller of the function that called it :)
 func MyCaller() string {
