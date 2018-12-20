@@ -285,7 +285,7 @@ func (x *XooaClient) GetResultForDeleteIdentity(ctx context.Context, resultId st
  * @param ctx context.Context for authentication, logging, tracing, etc.
  @param resultId Returned in previous RegenerateToken Operation
  @return */
-func (x *XooaClient) GetResultForRegenerateTokenAsync(ctx context.Context, resultId string) (models.RegenerateIdentityResponse, *models.XooaApiException) {
+func (x *XooaClient) GetResultForRegenerateTokenAsync(ctx context.Context, resultId string) (models.Identity, *models.XooaApiException) {
 	return x.Xooa.ResultApi.GetResultForRegenerateTokenAsync(ctx, resultId)
 
 }

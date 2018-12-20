@@ -222,9 +222,9 @@ func (a *ResultApiService) GetResultForDeleteIdentity(ctx context.Context, resul
  * @param ctx context.Context for authentication, logging, tracing, etc.
  @param resultId Returned in previous RegenerateToken Operation
  @return */
-func (a *ResultApiService) GetResultForRegenerateTokenAsync(ctx context.Context, resultId string) ( models.RegenerateIdentityResponse, *models.XooaApiException) {
+func (a *ResultApiService) GetResultForRegenerateTokenAsync(ctx context.Context, resultId string) ( models.Identity, *models.XooaApiException) {
 	res,error := a.Result(ctx,resultId)
-	regenerateResponse := models.RegenerateIdentityResponse{}
+	regenerateResponse := models.Identity{}
 	if error != nil {
 		log.Error(error)
 		return regenerateResponse,error
