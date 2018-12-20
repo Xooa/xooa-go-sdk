@@ -149,6 +149,24 @@ func (a *ResultApiService) GetResultForBlockByNumber(ctx context.Context, result
 
 }
 
+/* GetResultForTransactionByTransactionId Fetch result of previously submitted transaction
+ API Returns result of previously submitted transaction
+ * @param ctx context.Context for authentication, logging, tracing, etc.
+ @param resultId Returned in previous TransactionByTransactionId Operation
+ @return */
+func (a *ResultApiService) GetResultForTransactionByTransactionId(ctx context.Context, resultId string) ( models.Transaction, *models.XooaApiException) {
+	res,errorI := a.Result(ctx,resultId)
+	block := models.Transaction{}
+	if errorI != nil {
+		log.Error(errorI)
+		return block,errorI
+	}
+	mapstructure.Decode(res.Result,&block,)
+	return block,errorI
+
+
+}
+
 /* Fetch result of previously submitted transaction
  API Returns result of previously submitted transaction
  * @param ctx context.Context for authentication, logging, tracing, etc.

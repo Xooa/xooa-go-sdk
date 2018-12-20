@@ -72,6 +72,26 @@ func (x *XooaClient) GetBlockByNumber(ctx context.Context, blockNumber string, l
 func (x *XooaClient) GetBlockByNumberAsync(ctx context.Context, blockNumber string, localVarOptionals map[string]interface{}) (models.BlockTransactionCount, models.PendingTransactionResponse, *models.XooaApiException) {
 	return x.Xooa.BlockchainApi.GetBlockByNumberAsync(ctx, blockNumber, localVarOptionals)
 }
+/* Get specific Transaction information such as hash.
+ * @param ctx context.Context for logging, tracing, etc.
+ @param txHash Block number to fetch data
+ @param optional (nil or map[string]interface{}) with one or more of:
+ @param "async" (string) Call this request asynchronously without waiting for response
+ @param "timeout" (string) Request timeout in millisecond
+ @return */
+func (x *XooaClient) GetTransactionByTransactionId(ctx context.Context, txHash string, localVarOptionals map[string]interface{}) (models.Transaction, models.PendingTransactionResponse, *models.XooaApiException) {
+	return x.Xooa.BlockchainApi.GetTransactionByTransactionId(ctx, txHash, localVarOptionals)
+}
+/* Get specific Transaction information such as hash.
+ * @param ctx context.Context for authentication, logging, tracing, etc.
+ @param txHash Block number to fetch data
+ @param optional (nil or map[string]interface{}) with one or more of:
+ @param "async" (string) Call this request asynchronously without waiting for response
+ @param "timeout" (string) Request timeout in millisecond
+ @return */
+func (x *XooaClient) GetTransactionByTransactionIdAsync(ctx context.Context, txHash string, localVarOptionals map[string]interface{}) (models.Transaction, models.PendingTransactionResponse, *models.XooaApiException) {
+	return x.Xooa.BlockchainApi.GetTransactionByTransactionIdAsync(ctx, txHash, localVarOptionals)
+}
 /* Get current blocks in the network
  * @param ctx context.Context for logging, tracing, etc.
  @param optional (nil or map[string]interface{}) with one or more of:
@@ -248,6 +268,15 @@ func (x *XooaClient) GetResultForCurrentBlock(ctx context.Context, resultId stri
  @return */
 func (x *XooaClient) GetResultForBlockByNumber(ctx context.Context, resultId string) (models.BlockTransactionCount, *models.XooaApiException) {
 	return x.Xooa.ResultApi.GetResultForBlockByNumber(ctx, resultId)
+
+}
+
+/* API Returns result of previously submitted transaction
+ * @param ctx context.Context for authentication, logging, tracing, etc.
+ @param resultId Returned in previous BlockByNumber Operation
+ @return */
+func (x *XooaClient) GetResultForTransactionByTransactionId(ctx context.Context, resultId string) (models.Transaction, *models.XooaApiException) {
+	return x.Xooa.ResultApi.GetResultForTransactionByTransactionId(ctx, resultId)
 
 }
 /* API Returns result of previously submitted transaction
