@@ -378,7 +378,7 @@ func TestRegenerateTokenAsync(t *testing.T){
 	assert.NotEqual(pendingTransaction.ResultId,"","Must be a non empty String")
 	assert.NotEqual(pendingTransaction.ResultURL,"","Must be a non empty String ")
 	if pendingTransaction.ResultId != "" {
-		time.Sleep(8 * time.Second)
+		time.Sleep(4 * time.Second)
 		regenerateResponse, errorI := x.GetResultForRegenerateTokenAsync(context.TODO(), pendingTransaction.ResultId)
 		if errorI != nil {
 			t.Fail()

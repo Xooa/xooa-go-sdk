@@ -135,6 +135,7 @@ func AppFunctions() {
 	//"get" function is the part of the smartcontract provided in this example
 	queryResponse, _, _ := x.Query(context.TODO(), "get", map[string]interface{}{"args": "arg1"})
 	fmt.Println(queryResponse)
+	fmt.Println("-------END--------")
 }
 
 
