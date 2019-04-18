@@ -1,6 +1,3 @@
-
-[![Build Status](http://3.84.45.239:8080/buildStatus/icon?job=xooa-go-sdk)](http://3.84.45.239:8080/job/xooa-go-sdk/)
-
 # Xooa Go SDK
 
 The official Xooa SDK for Go to connect with the Xooa PaaS.
