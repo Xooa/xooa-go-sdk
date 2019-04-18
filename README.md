@@ -3,7 +3,13 @@
 
 # Xooa Go SDK
 
-The official Xooa SDK for Go.
+The official Xooa SDK for Go to connect with the Xooa PaaS.
+
+This SDK refers to smart contract APIs available for Xooa platform. For more details, refer: <https://api.xooa.com/explorer>
+
+Note: XLDB and asset management APIs are not included in the SDK.
+
+The platform documentation is available at <https://docs.xooa.com>
 
 ## Installation
 
